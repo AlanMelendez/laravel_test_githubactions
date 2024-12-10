@@ -14,6 +14,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
+
+Route::get('/test', function () {
+    return response()->json([
+        'message' => 'Hello World!',
+    ]);
 });
+
+// Redirect any routes if don't exists to the welcome.blade.php
+Route::any('{any}', function () {
+    return view('welcome');
+})->where('any', '.*');
